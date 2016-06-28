@@ -2,6 +2,13 @@ library(twitteR)
 library(plyr)
 library(stringr)
 
+#twitter authorization
+api_key = "ahlcqH8WtwV2DtEcZiEvvrHfX"
+api_secret = "nk7dP1L1PuenXmIK0YjY2tFoBu5MdHus2xypr9uefJ8ZBFjbI3"
+access_token = "746420255426129924-16KXlZgdbQqRTs0snJZko3ckBwGtnSv"
+access_token_secret = "cZOlWLvvwfjUgQiOdKbvhO6qkwflAkdMDS1tezo2XmxHn"
+setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
+
 #code adapated from http://thinktostart.com/sentiment-analysis-on-twitter/
 #Positive and Negative words cited from: 
 # ;   Minqing Hu and Bing Liu. "Mining and Summarizing Customer Reviews." 
@@ -10,7 +17,7 @@ library(stringr)
 # ;       Washington, USA, 
 
 #enter hashtag or keyword 
-tweets = searchTwitter("#happy", n=5, lang='en') 
+tweets = searchTwitter("Sassy Mitchell", n=200, lang='en') 
 Tweets.text = lapply(tweets,function(t)t$getText())
 Tweets.text = sapply(Tweets.text, function(row) iconv(row, "latin1", "ASCII", sub="")) #gets rid of emojis (temp)
 
@@ -42,6 +49,7 @@ score.sentiment = function(sentences, pos.words, neg.words){
     neg.matches = !is.na(neg.matches)
     
     #TRUE/FALSE will be treated as 1/0 by sum():
+    #super simple way to calculate score: needs improvement 
     score = sum(pos.matches) - sum(neg.matches) #score is # positive words - # negative words
     return(score)
   }, pos.words, neg.words)
