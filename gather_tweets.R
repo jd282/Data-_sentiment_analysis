@@ -12,6 +12,7 @@ setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
 
 #gather search results for hashtag/term
 query = readline(prompt="Enter Twitter query: ")
+#can change n to whatever number of search results you want returned 
 tweets = searchTwitter(query, n=200, lang='en') 
 Tweets.text = lapply(tweets,function(t)t$getText())
 Tweets.text = sapply(Tweets.text, function(row) iconv(row, "latin1", "ASCII", sub="")) #gets rid of emojis (temp)
