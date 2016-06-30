@@ -1,6 +1,8 @@
 import csv
 import indicoio
 
+#given csv file of tweets will calculate the sentiment score (from indico) for each
+
 indicoio.config.api_key = "c055aa319b32e209e7862c21f9216377"
 
 data = []
