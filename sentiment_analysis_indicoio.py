@@ -2,11 +2,10 @@ import csv
 import indicoio
 
 #given csv file of tweets will calculate the sentiment score (from indico) for each
-
+#can create a free indico account that will give me 10,0000 free requests 
 indicoio.config.api_key = "c055aa319b32e209e7862c21f9216377"
 
 data = []
-
 
 #iterate through rows of csv file and calculate the sentiment score of each cell
 csvf = input("Enter a csv file to parse: ")

@@ -3,7 +3,7 @@ library(xlsx)
 
 ### Takes a hashtag or search term and outputs the search results on Twitter into an csv file 
 
-#twitter authorization
+#twitter authorization (from my twitter account when I create an application in apps.twitter.com)
 api_key = "ahlcqH8WtwV2DtEcZiEvvrHfX"
 api_secret = "nk7dP1L1PuenXmIK0YjY2tFoBu5MdHus2xypr9uefJ8ZBFjbI3"
 access_token = "746420255426129924-16KXlZgdbQqRTs0snJZko3ckBwGtnSv"
