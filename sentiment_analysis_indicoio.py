@@ -9,6 +9,7 @@ data = []
 
 #iterate through rows of csv file and calculate the sentiment score of each cell
 csvf = input("Enter a csv file to parse: ")
+sent_sum = 0
 with open(csvf, 'rb') as csvfile:
     rd = csv.reader(csvfile)
     rownum = 0
@@ -18,10 +19,13 @@ with open(csvf, 'rb') as csvfile:
             for col in row:
                 if (colnum != 0) and (col != ""):
                     score = indicoio.sentiment(col)
+                    sent_sum += score
                     data.append([rownum, col, score])
                 colnum += 1
         rownum += 1          
 csvfile.close()
+
+mean = sent_sum/rownum
 
 
 #write the score of the tweet into the same csv file
@@ -31,6 +35,6 @@ wr.writerow(["Tweet", "Sentiment Score"])
 for item in data:
     wr.writerow(item)
 
-
+csvfile.close()
 
 

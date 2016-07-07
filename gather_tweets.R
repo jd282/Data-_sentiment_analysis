@@ -13,9 +13,13 @@ setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
 #gather search results for hashtag/term
 query = readline(prompt="Enter Twitter query: ")
 #can change n to whatever number of search results you want returned 
-tweets = searchTwitter(query, n=200, lang='en') 
+tweets = searchTwitter(query, n=10, lang='en') 
 Tweets.text = lapply(tweets,function(t)t$getText())
+Tweets.id = lapply(tweets, function(t)t$getId())
 Tweets.text = sapply(Tweets.text, function(row) iconv(row, "latin1", "ASCII", sub="")) #gets rid of emojis (temp)
+Tweets.retweet = lapply(tweets, function(t)t$getRetweetCount())
+Tweets.user = lapply(tweets, function(t)t$getScreenName())
+
 
 clean_text = function(some_txt){
     some_txt = gsub("(RT|via)((?:\\b\\W*@\\w+)+)", "", some_txt)
@@ -45,8 +49,10 @@ clean_text = function(some_txt){
 
 #create table with each row as a tweet 
 df_tweets = data.frame(
-  Tweet = sapply(Tweets.text, clean_text)
+  Tweet = sapply(Tweets.text, clean_text),
+  Retweets = sapply(tweets, function(t)t$getRetweetCount())
 )
+
 
 #save tweets into excel file 
 write.xlsx(df_tweets, "/Users/jenniferdu/Documents/Duke/DataPlus2016/SentimentAnalysis/tweets.xlsx")
