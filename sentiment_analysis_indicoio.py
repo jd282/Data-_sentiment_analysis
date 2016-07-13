@@ -1,6 +1,5 @@
 import csv
 import indicoio
-from operator import truediv
 
 #given csv file of tweets will iterate through row and calculate the sentiment score
 #(from indico) for each and export to new csv file
@@ -63,7 +62,7 @@ csvfile.close()
 csvf = 'tweets_score.csv'
 csvfile = open(csvf, 'wb')
 wr = csv.writer(csvfile)
-header.append("Sentiment Score")
+header.append("Score")
 wr.writerow(header)
 for item in data:
     wr.writerow(item)
