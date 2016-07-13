@@ -2,7 +2,8 @@
 
 Doing sentiment analysis on twitter search results 
 
-gather_tweets.R  - create excel file of tweets for a seach term
+gather_tweets.R  - create excel file of tweets for a single seach term
+gather_listTweets.R - given txt file of twitter search queries, export n number of tweets for each query 
 
 sentiment_analysis_indicoio.py - give it list of tweets in csv file and outputs csv file with tweets and sentiment score from Indico
 
